@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import Header from "@/component/Header";
+import IconContextProvider from "@/provider/IconContextProvider";
+import { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/component/Header";
-import LeftSideBar from "@/component/LeftSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,20 +25,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="grid grid-rows-[100px_1fr] border-2 min-h-screen">
-          <Header />
-          <div className="grid grid-cols-[200px_1fr]" >
-            <LeftSideBar />
-            <main className=" bg-blue-200">
-              {children}
-            </main>
-          </div>
-        </div>
+        <ThemeProvider>
+          <IconContextProvider>
+            <div className="grid grid-rows-[80px_1fr] min-h-screen">
+              <Header />
+              <main>
+                {children}
+              </main>
+            </div>
+          </IconContextProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
