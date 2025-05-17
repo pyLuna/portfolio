@@ -1,4 +1,4 @@
-import Header from "@/component/Header";
+import Header from "@/component/layout/Header";
 import IconContextProvider from "@/provider/IconContextProvider";
 import { Metadata } from "next";
 import { ThemeProvider } from "next-themes";

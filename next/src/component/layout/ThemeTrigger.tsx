@@ -1,6 +1,7 @@
 "use client";
 import { MoonIcon, SunIcon } from '@phosphor-icons/react';
 import { useTheme } from 'next-themes';
+import Button from '../ui/Button';
 
 const ThemeTrigger = () => {
     const { theme, setTheme } = useTheme();
@@ -11,7 +12,7 @@ const ThemeTrigger = () => {
 
     return (
         <div className='space-x-2'>
-            <button
+            <Button
                 onClick={handleThemeChange}
             >
                 {theme === 'light' ? (
@@ -19,7 +20,7 @@ const ThemeTrigger = () => {
                 ) : (
                     <MoonIcon />
                 )}
-            </button>
+            </Button>
         </div>
     )
 }
