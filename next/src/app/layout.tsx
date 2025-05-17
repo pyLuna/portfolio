@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider>
+        <ThemeProvider enableSystem={true}>
           <IconContextProvider>
             <div className="grid grid-rows-[80px_1fr] min-h-screen">
               <Header />
