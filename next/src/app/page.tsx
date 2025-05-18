@@ -12,6 +12,7 @@ const Home = () => {
       <h1>Home</h1>
       <p>Theme: {theme.theme}</p>
       <p>System: {theme.systemTheme}</p>
+      <pre>{JSON.stringify(theme, null, 2)}</pre>
       <ThemeTrigger />
     </div>
   );

@@ -8,13 +8,7 @@ const useThemeHook = () => {
 
     useEffect(() => {
         setMounted(true);
-        theme.setTheme(v => {
-            if (theme.systemTheme === 'dark') {
-                return 'dark';
-            }
-            return 'light';
-        })
-    }, [])
+    }, []);
     return {
         ...theme,
         mounted
@@ -24,3 +18,4 @@ const useThemeHook = () => {
 export {
     useThemeHook
 };
+
