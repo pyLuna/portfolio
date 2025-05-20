@@ -1,5 +1,6 @@
 import Url from "@/utils/url";
 import Link from "next/link";
+import Debug from "../Debug";
 import ThemeToggle from "./ThemeTrigger";
 
 const Header = () => {
@@ -15,7 +16,9 @@ const Header = () => {
                 <Link href={Url.resume} target="_blank" download={"resume.pdf"}>Resume</Link>
                 {/* <Link href={Url.theme}>Theme</Link> */}
                 <Link href={Url.admin}>Admin</Link>
-                <Link href="/api/test">Test</Link>
+                <Debug>
+                    <Link href="/api/test">Test</Link>
+                </Debug>
                 <Link href="#">Contact</Link>
             </nav>
 
