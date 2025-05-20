@@ -2,7 +2,7 @@
 import { useThemeHook } from "@/hooks/theme";
 import { Pattaya } from "next/font/google";
 
-const font = Pattaya({ weight: ["400"] });
+const font = Pattaya({ weight: ["400"], subsets: ["latin"] });
 
 const Home = () => {
   const theme = useThemeHook();

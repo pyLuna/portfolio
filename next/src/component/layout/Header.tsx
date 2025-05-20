@@ -4,10 +4,6 @@ import ThemeToggle from "./ThemeTrigger";
 
 const Header = () => {
 
-    // const handleDownloadResume = () => {
-    //     window.open("/resume.pdf", "_blank");
-    // }
-
     return (
         <section className="p-4 flex items-center justify-between shadow-sm bg-primary-900/40 dark:bg-primary-300/30">
             <Link href="/" className="text-xl font-semibold m-2 border rounded-full p-2">
