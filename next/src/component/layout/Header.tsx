@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeTrigger";
 const Header = () => {
 
     return (
-        <section className="p-4 flex items-center justify-between shadow-sm bg-primary-900/40 dark:bg-primary-300/30">
+        <section className="p-4 flex items-center justify-between bg-primary-900/20 dark:bg-primary-300/10">
             <Link href="/" className="text-xl font-semibold m-2 border rounded-full p-2">
                 Logo
             </Link>
