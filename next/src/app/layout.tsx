@@ -1,4 +1,5 @@
 import Header from "@/component/layout/Header";
+import ViewSourceCode from "@/component/layout/ViewSourceCode";
 import IconContextProvider from "@/provider/IconContextProvider";
 import { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
@@ -33,9 +34,11 @@ export default function RootLayout({
       >
         <ThemeProvider enableSystem={true}>
           <IconContextProvider>
-            <div className="grid grid-rows-[80px_1fr] min-h-screen">
+
+            <ViewSourceCode />
+            <div className="relative grid grid-rows-[80px_1fr] min-h-screen">
               <Header />
-              <main>
+              <main className="">
                 {children}
               </main>
             </div>
