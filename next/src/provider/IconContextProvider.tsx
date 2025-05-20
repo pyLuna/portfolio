@@ -7,7 +7,7 @@ const IconContextProvider = ({ children }: { children: ReactNode }) => {
         <IconContext.Provider
             value={{
                 size: 24,
-                weight: "duotone",
+                weight: "regular",
             }}
         >
             {children}

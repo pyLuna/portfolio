@@ -1,4 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
+import Loading from "./Loading";
+
+type Variant = "primary" | "secondary" | "destructive";
 
 /**
  * @description This has a default style that follows the theme of the app
@@ -6,13 +9,37 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
  * @param props the props of the button element
  * @returns 
  */
-const Button = ({ children, ...props }: { children: ReactNode } & ButtonHTMLAttributes<HTMLButtonElement>) => {
+const Button = ({
+    children,
+    variant = "primary",
+    loading = false,
+    ...props
+}:
+    {
+        children: ReactNode,
+        loading?: boolean
+        variant?: Variant
+    }
+    & ButtonHTMLAttributes<HTMLButtonElement>
+) => {
+
+    let className = "text-white font-bold py-2 px-4 rounded";
+
+    if (variant === "destructive") className += " bg-red-500 hover:bg-red-700";
+    if (variant === "secondary") className += " bg-secondary-500 hover:bg-secondary-700";
+    if (variant === "primary") className += " bg-primary-500 hover:bg-primary-700";
+
     return (
         <button
-            className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded"
+            type="button"
+            className={className}
             {...props}
         >
-            {children}
+            {loading ? (
+                <Loading></Loading>
+            ) : (
+                <>{children}</>
+            )}
         </button>
     );
 };
