@@ -86,11 +86,11 @@
 
 @layer {
   .page{
-    @apply m-4
+    @apply m-4 min-h-screen
   }
 
   .header a{
-    @apply hover:underline hover:text-primary-200 hover:font-bold
+    @apply flex flex-col hover:underline hover:text-primary-200 hover:font-bold
   }
 }
 

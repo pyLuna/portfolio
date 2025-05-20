@@ -1,4 +1,4 @@
-
+import { twMerge } from "tailwind-merge";
 type ThemeTileProps = {
     color: string;
     label: string;
@@ -21,9 +21,10 @@ const ThemeTile = ({ color, label }: ThemeTileProps) => {
             <h1>{label}</h1>
             <div className="flex flex-row gap-2">
                 {brightness.map(br => {
+                    const className = twMerge(`border-1 place-content-center ${color}-${br} size-18 rounded-full`);
                     return (
                         <div key={br + "-" + color} className="relative">
-                            <div className={`border-1 place-content-center bg-${color}-${br} size-18 rounded-full`} />
+                            <div className={className} style={{ backgroundColor: `var(--color-${color}-${br})` }} />
                             <span className="absolute text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-500/10 p-2 rounded-full">
                                 <p className="text-center w-full">
                                     {br}
