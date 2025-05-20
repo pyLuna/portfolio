@@ -9,7 +9,7 @@ In my college days, I used to be a working student.
 
 I worked in ***GreenSolutions*** for almost a year as an *Inventory Associate* for a few months working with handheld devices to keep track of every items going in and out everyday. 
 
-I have worked in ***DIREC Business Technology Inc*** as an *Intern System Analyst* for a year. 
+I have worked in ***DIREC Business Technology Inc*** as an *Intern System Analyst* for a year. Analyzing every software from in and out to identify problems in present or may occur in future. Making a documents to keep track everything and to review. 
 
 It helps me build myself and programming skills as an individual. Filling up every room in my self to become a better professional.
 
