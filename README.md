@@ -2,7 +2,7 @@
 
 Hi, I am ***John Joshua*** 😁😁! Welcome to my portfolio. 
 
-I am currently working as a _Freelancer_ in *Withcenter* in Mandaluyong City.
+I am currently working as a _Software Developer - Freelancer_ in *Withcenter* from Mandaluyong City.
 
 ## Work Experience
 In my college days, I used to be a working student. 
