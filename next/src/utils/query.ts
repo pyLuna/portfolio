@@ -1,25 +1,23 @@
+import getMongoClient from "@/server/mongo/db.init";
 import { Collection, Document } from "mongodb";
-import { mongo } from "../server/mongo/db.init";
 
 interface QueryParams {
-    database_name?: string,
+    database_name?: string;
     collection_name: string;
-    queryFn: (client: Collection<Document>) => any
+    queryFn: (client: Collection<Document>) => any;
 }
+
 const query = async <T>({
-    database_name,
+    database_name = "portfolio",
     collection_name,
     queryFn
 }: QueryParams): Promise<T> => {
-    await mongo.connect();
+    const mongo = await getMongoClient();
 
-    const col = mongo.db("portfolio").collection(collection_name);
-
+    const col = mongo.db(database_name).collection(collection_name);
     const result = await queryFn(col);
 
-    await mongo.close();
-
     return result as T;
-}
+};
 
 export default query;

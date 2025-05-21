@@ -4,16 +4,21 @@ import { encrypt } from "@/utils/hashing";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-    if (process.env.NODE_ENV === "production") return error({ "message": "Forbidden" }, { status: 403 });
+    try {
 
-    const { username, password } = await req.json();
-    console.log("server: ", username, password);
+        if (process.env.NODE_ENV === "production") return error({ "message": "Forbidden" }, { status: 403 });
 
-    const encryptedPassword = await encrypt(password);
+        const { username, password } = await req.json();
+        console.log("server: ", username, password);
 
-    const re = await addUser({ username, password: encryptedPassword });
+        const encryptedPassword = await encrypt(password);
 
-    console.log("addUser response: ", re);
+        const re = await addUser({ username, password: encryptedPassword });
 
-    return new Response("OK", { status: 200 });
+        console.log("addUser response: ", re);
+
+        return new Response("OK", { status: 200 });
+    } catch (e) {
+        return error({ "message": JSON.stringify(e) });
+    }
 }   

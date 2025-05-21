@@ -1,11 +1,11 @@
 import { getUserByUsername } from "@/server/admin/admin";
 import { error, json } from "@/server/return.response";
 import { generateToken } from "@/server/token/token";
-import { ErrorCode } from "@/utils/errors";
+import { ErrorCode } from "@/utils/error.codes";
 import { compare } from "@/utils/hashing";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
     const response = await req.json();
     console.log("response -----> ", response);
 
@@ -26,6 +26,6 @@ export async function POST(req: NextRequest) {
     const token = generateToken(user);
     req.cookies.set("token", token);
 
-    return json({ token });
+    return json({ token, ...user });
 }
 

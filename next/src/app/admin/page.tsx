@@ -34,6 +34,10 @@ const AdminPage = () => {
             setLoading(false);
             return;
         }
+        const result = await response.json();
+
+        alert(`status: ${response.status}\ncode: ${result.string_code}\nmessage: ${result.message}`);
+
         setLoading(false);
     }
 
