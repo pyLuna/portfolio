@@ -3,7 +3,7 @@ import { Admin } from "@/lib/types/admin";
 import { createContext, useContext } from "react";
 
 type AdminContextType = {
-    admin?: Admin,
+    admin?: Admin | null,
     isLoggedIn: boolean,
     loading: boolean,
     error: boolean,

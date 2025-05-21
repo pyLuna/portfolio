@@ -1,3 +1,4 @@
+import { useAdminContextHook } from "@/hooks/useAdminHook";
 import { Api } from "@/lib/utils/api.url";
 import { post } from "@/lib/utils/fetch";
 import Url from "@/lib/utils/url";
@@ -9,6 +10,7 @@ import ThemeToggle from "./ThemeTrigger";
 
 const Header = () => {
     const router = useRouter();
+    const adminContext = useAdminContextHook();
     const handleLogout = async () => {
         await post(Api.admin.logout);
         router.replace(Url.admin.login);
@@ -24,12 +26,11 @@ const Header = () => {
                 <Link href={Url.home}>Home</Link>
                 <Link href={Url.resume} target="_blank" download={"resume.pdf"}>Resume</Link>
                 {/* <Link href={Url.theme}>Theme</Link> */}
-                <Link href={Url.admin.home}>Admin</Link>
                 <Debug>
                     <Link href="/api/test">Test</Link>
                 </Debug>
                 <Link href="#">Contact</Link>
-                <Button variant="text" onClick={handleLogout}>Logout</Button>
+                {adminContext?.admin && <Button onClick={handleLogout}>Logout</Button>}
             </nav>
 
             <ThemeToggle />

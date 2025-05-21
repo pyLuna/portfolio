@@ -15,6 +15,9 @@ const AdminContextProvider = ({ children }: { children: ReactNode }) => {
         queryKey: ["admin"],
         queryFn: async () => {
             const res = await get<Admin>(Api.admin.my);
+
+            if (!res) return null;
+
             return res;
         },
         staleTime: 1000 * 60 * 5,
