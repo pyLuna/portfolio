@@ -18,7 +18,7 @@ const Header = () => {
 
     return (
         <section className="p-4 flex items-center justify-between">
-            <Link href="/" className="text-xl font-semibold m-2 border rounded-full p-2">
+            <Link href={Url.admin.home} className="text-xl font-semibold m-2 border rounded-full p-2">
                 Logo
             </Link>
 
