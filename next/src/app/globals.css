@@ -94,7 +94,7 @@
     }
 
   .header a{
-    @apply flex flex-col hover:underline hover:text-primary-200 hover:font-bold
+    @apply hover:underline hover:text-primary-200 hover:font-bold
   }
 }
 

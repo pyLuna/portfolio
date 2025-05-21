@@ -1,5 +1,5 @@
 "use client";
-import { useThemeHook } from '@/hooks/theme';
+import { useThemeHook } from '@/hooks/useThemeHook';
 import { MoonIcon, SunIcon } from '@phosphor-icons/react';
 import Button from '../ui/Button';
 

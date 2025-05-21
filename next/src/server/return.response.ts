@@ -1,4 +1,4 @@
-import RecordType from "@/types/record";
+import RecordType from "@/lib/types/record";
 
 /**
  * Returns a JSON response with the given data and a status code of 200.

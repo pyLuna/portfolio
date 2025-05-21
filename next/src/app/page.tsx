@@ -1,5 +1,5 @@
 "use client";
-import { useThemeHook } from "@/hooks/theme";
+import { useThemeHook } from "@/hooks/useThemeHook";
 import { Pattaya } from "next/font/google";
 
 const font = Pattaya({ weight: ["400"], subsets: ["latin"] });

@@ -1,8 +1,5 @@
-import Header from "@/component/layout/Header";
-import ViewSourceCode from "@/component/layout/ViewSourceCode";
-import IconContextProvider from "@/provider/IconContextProvider";
+import MultipleLayer from "@/component/layout/MultipleLayer";
 import { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,18 +18,9 @@ export default function RootLayout({
       <body
         className="antialiased"
       >
-        <ThemeProvider enableSystem={true}>
-          <IconContextProvider>
-
-            <ViewSourceCode />
-            <div className="relative grid grid-rows-[80px_1fr] min-h-screen">
-              <Header />
-              <main className="">
-                {children}
-              </main>
-            </div>
-          </IconContextProvider>
-        </ThemeProvider>
+        <MultipleLayer>
+          {children}
+        </MultipleLayer>
       </body>
     </html>
   );

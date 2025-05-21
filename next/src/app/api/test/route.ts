@@ -1,4 +1,4 @@
-import query from "@/utils/query";
+import query from "@/lib/utils/query";
 import { NextRequest } from "next/server";
 
 const GET = (request: NextRequest) => {
@@ -16,7 +16,7 @@ const GET = (request: NextRequest) => {
     );
 }
 
-const POST = async (request: NextRequest) => {
+const POST = async () => {
     const data = await query({
         database_name: "sample_mflix",
         collection_name: "movies",

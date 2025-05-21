@@ -1,4 +1,4 @@
-import RecordType from "@/types/record";
+import RecordType from "@/lib/types/record";
 import jwt from "jsonwebtoken";
 
 
@@ -24,12 +24,10 @@ const verifyToken = (token: string) => jwt.verify(token, process.env.NEXT_TOKEN_
  */
 
 const isTokenExpired = (token: string) => {
-    try {
-        const decoded = verifyToken(token)! as jwt.JwtPayload;
-        return decoded.exp ? decoded.exp < Date.now() / 1000 : false;
-    } catch (err) {
-        return true;
-    }
+    const decoded = verifyToken(token)! as jwt.JwtPayload;
+    const dateToday = new Date(Date.now());
+    const expirationDate = new Date(decoded.exp!);
+    return dateToday > expirationDate;
 };
 
 export {

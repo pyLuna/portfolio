@@ -2,43 +2,43 @@
 import Debug from "@/component/Debug";
 import Button from "@/component/ui/Button";
 import Input from "@/component/ui/Input";
-import { Api } from "@/utils/api.url";
+import { useAdminContextHook } from "@/hooks/useAdminHook";
+import { Api } from "@/lib/utils/api.url";
+import { post } from "@/lib/utils/fetch";
+import Url from "@/lib/utils/url";
+import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
 
-const AdminPage = () => {
+const AdminLoginPage = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const [loading, setLoading] = useState(false);
+    const adminContext = useAdminContextHook();
+    const router = useRouter();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleLogin(Api.admin_login);
+        handleLogin(Api.admin.login);
     };
 
     const handleLogin = async (url: string) => {
         if (loading) return;
         setLoading(true);
-        console.log("Initiating ... url: ", url, formRef.current);
+
         if (!formRef.current) return;
 
         const formData = new FormData(formRef.current);
         const object = Object.fromEntries(formData.entries());
-        console.log("Form data object:", object, "formData:", formData);
-
-        const response = await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(object),
+        const result = await post(url, {
+            data: object,
+            auth: false,
         });
-
-        if (response.ok) {
-            console.log("Login success");
-            setLoading(false);
-            return;
-        }
-        const result = await response.json();
-
-        alert(`status: ${response.status}\ncode: ${result.string_code}\nmessage: ${result.message}`);
-
         setLoading(false);
+        console.log(result);
+
+        if (!result) return null;
+
+        adminContext?.refresh();
+        router.replace(Url.admin.home);
     }
 
     return (
@@ -53,7 +53,7 @@ const AdminPage = () => {
                 <div className="flex flex-row justify-center gap-4">
                     <Button type="submit" loading={loading}>Login</Button>
                     <Debug>
-                        <Button type="button" variant="secondary" loading={loading} onClick={() => handleLogin(Api.admin_signup)}>Sign Up</Button>
+                        <Button type="button" variant="secondary" loading={loading} onClick={() => handleLogin(Api.admin.signup)}>Sign Up</Button>
                     </Debug>
                 </div>
             </form>
@@ -61,4 +61,4 @@ const AdminPage = () => {
     );
 }
 
-export default AdminPage;
+export default AdminLoginPage;
