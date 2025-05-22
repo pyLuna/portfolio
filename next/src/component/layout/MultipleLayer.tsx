@@ -6,12 +6,13 @@ import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Header from "./Header";
 import LeftSideBar from "./LeftSidebar";
+import TopLoadingBar from "./TopLoadingBar";
 import ViewSourceCode from "./ViewSourceCode";
 
 const MultipleLayer = ({ children }: { children: ReactNode }) => {
 
     const path = usePathname();
-    let mainClassName = "md:grid grid-cols-[250px_1fr] gap-4";
+    let mainClassName = "flex flex-col md:grid md:grid-cols-[250px_1fr] gap-4";
 
     if (path.includes("admin")) {
         mainClassName = "";
@@ -23,6 +24,7 @@ const MultipleLayer = ({ children }: { children: ReactNode }) => {
         <QueryClientProvider client={queryClient}>
             <ThemeProvider enableSystem={true}>
                 <IconContextProvider>
+                    <TopLoadingBar />
                     <ViewSourceCode />
                     <div className="grid grid-rows-[80px_1fr] max-w-4xl lg:max-w-5xl mx-auto">
                         <Header />
