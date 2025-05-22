@@ -17,14 +17,14 @@ const Header = () => {
     }
 
     return (
-        <section className="p-4 flex items-center justify-between">
+        <section className="sticky top-0 flex flex-row gap-4 bg-background items-center justify-between">
             <Link href={Url.admin.home} className="text-xl font-semibold m-2 border rounded-full p-2">
                 Logo
             </Link>
 
             <nav className="header flex gap-4 items-center text-sm font-semibold">
                 <Link href={Url.home}>Home</Link>
-                <Link href={Url.resume} target="_blank" download={"resume.pdf"}>Resume</Link>
+                <a href={Url.resume} target="_blank">Resume</a>
                 {/* <Link href={Url.theme}>Theme</Link> */}
                 <Debug>
                     <Link href="/api/test">Test</Link>

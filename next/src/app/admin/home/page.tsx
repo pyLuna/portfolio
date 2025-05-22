@@ -1,5 +1,6 @@
 "use client";
 
+import MenuTile from "@/component/admin/MenuTile";
 import Loading from "@/component/ui/Loading";
 import { useAdminContextHook } from "@/hooks/useAdminHook";
 
@@ -10,9 +11,11 @@ const AdminPage = () => {
     if (adminContext?.error) return <p>Error fetching admin</p>
 
     return (
-        <section className="page">
-            <p>Admin Page</p>
-            <pre>{JSON.stringify(adminContext?.admin, null, 2)}</pre>
+        <section className="page grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[80px]">
+            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
         </section>
     )
 }
