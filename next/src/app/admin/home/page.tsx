@@ -3,6 +3,7 @@
 import MenuTile from "@/component/admin/MenuTile";
 import Loading from "@/component/ui/Loading";
 import { useAdminContextHook } from "@/hooks/useAdminHook";
+import Url from "@/lib/utils/url";
 
 const AdminPage = () => {
     const adminContext = useAdminContextHook();
@@ -12,10 +13,10 @@ const AdminPage = () => {
 
     return (
         <section className="page grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[80px]">
-            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
-            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
-            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
-            <MenuTile href="#" title="Basic Information" subtitle="Update basic information" />
+            <MenuTile href={Url.admin.basic} title="Basic Information" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information1" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information2" subtitle="Update basic information" />
+            <MenuTile href="#" title="Basic Information3" subtitle="Update basic information" />
         </section>
     )
 }

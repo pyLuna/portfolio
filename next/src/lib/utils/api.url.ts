@@ -3,6 +3,7 @@ export class Api {
         login: '/api/admin/login',
         signup: '/api/admin/signup',
         my: '/api/admin/my',
-        logout: '/api/admin/logout'
+        logout: '/api/admin/logout',
+        basic: '/api/admin/basic'
     }
 }

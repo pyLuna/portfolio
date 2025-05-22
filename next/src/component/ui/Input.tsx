@@ -6,7 +6,7 @@ const Input = ({ ...props }:
 
     return (
         <input
-            className="p-2 border rounded-md"
+            className="p-2 border rounded-md placeholder:text-gray-400"
             type="text"
             {...props}
         />
