@@ -6,7 +6,6 @@ const uri = `mongodb+srv://${process.env.NEXT_DB_USER}:${process.env.NEXT_DB_PAS
 let cachedClient: MongoClient | null = null;
 
 const getMongoClient = async (): Promise<MongoClient> => {
-    console.log("uri", uri, "user", process.env.NEXT_DB_USER, "pass", process.env.NEXT_DB_PASSWORD);
     if (cachedClient) {
         return cachedClient;
     }
