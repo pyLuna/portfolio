@@ -9,18 +9,8 @@ import { NextRequest } from "next/server";
 // TODO: ERROR HANDLING
 
 export async function GET() {
-    // TODO: Make an easier way to validate token without using the NextJs Middleware
-    const c = await cookies();
-    const isValid = isTokenExpired(c.get("token")?.value!);
 
-    if (!isValid) {
-        c.delete("token");
-        return error({ "message": "Token expired." }, { status: 401, string_code: ErrorCode.token_expired })
-    }
-
-    const id = decodeToken(c.get("token")?.value!)._id;
-
-    const basicInfo = await getBasicInfo(id);
+    const basicInfo = await getBasicInfo();
 
     if (!basicInfo) return error({ "message": "Basic info not found." }, { status: 404, string_code: ErrorCode.basic_info_not_found });
 
@@ -39,6 +29,8 @@ export async function POST(req: NextRequest) {
 
     const id = decodeToken(c.get("token")?.value!)._id;
 
+    const existing = await getBasicInfo();
+    if (existing) return error({ "message": "Basic info already exists." }, { status: 400, string_code: ErrorCode.basic_info_already_exists });
     await addBasicInfo(id);
 
     return json({ "message": "Basic info updated." });

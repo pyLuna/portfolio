@@ -3,11 +3,12 @@ import { BasicInfoType } from "./types/basic_info";
 import { BASIC } from "./utils/constants";
 import query from "./utils/query";
 
-export const getBasicInfo = async (id: ObjectId) => {
+export const getBasicInfo = async () => {
     const result = await query<BasicInfoType>({
         collection_name: BASIC,
         queryFn: async (client) => {
-            return await client.findOne({ admin_id: id })
+            // Get the only document
+            return await client.findOne();
         }
     });
 

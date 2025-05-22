@@ -6,4 +6,5 @@ export class ErrorCode {
     static token_invalid = "token_invalid";
     static id_not_found = "id_not_found";
     static basic_info_not_found = "basic_info_not_found";
+    static basic_info_already_exists = "basic_info_already_exists";
 }
