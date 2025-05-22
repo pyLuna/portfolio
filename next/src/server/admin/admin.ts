@@ -41,7 +41,7 @@ const addUser = async (user: Partial<Admin>) => {
     return result;
 }
 
-const getAdmin = async (id: string) => {
+const getAdmin = async (id: ObjectId) => {
     const admin = await query<Admin>({
         collection_name: ADMIN,
         queryFn: async (client) => {

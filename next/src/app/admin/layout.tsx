@@ -3,9 +3,11 @@ import { ReactNode } from "react";
 
 const AdminLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <AdminContextProvider>
-            {children}
-        </AdminContextProvider>
+        <div className="border place-content-center ">
+            <AdminContextProvider>
+                {children}
+            </AdminContextProvider>
+        </div>
     );
 }
 

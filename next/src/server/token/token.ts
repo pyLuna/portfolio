@@ -1,3 +1,4 @@
+import { Admin } from "@/lib/types/admin";
 import RecordType from "@/lib/types/record";
 import jwt from "jsonwebtoken";
 
@@ -14,7 +15,11 @@ const generateToken = (data: RecordType) => {
     return token;
 }
 
-const verifyToken = (token: string) => jwt.verify(token, process.env.NEXT_TOKEN_SECRET as string);
+const decodeToken = (token: string) => {
+    const decoded = jwt.verify(token, process.env.NEXT_TOKEN_SECRET as string);
+
+    return JSON.parse(JSON.stringify(decoded)) as Admin;
+};
 
 /**
  * Determines if a given JWT is expired.
@@ -24,13 +29,11 @@ const verifyToken = (token: string) => jwt.verify(token, process.env.NEXT_TOKEN_
  */
 
 const isTokenExpired = (token: string) => {
-    const decoded = verifyToken(token)! as jwt.JwtPayload;
+    const decoded = decodeToken(token)! as jwt.JwtPayload;
     const dateToday = new Date(Date.now());
     const expirationDate = new Date(decoded.exp!);
     return dateToday > expirationDate;
 };
 
-export {
-    generateToken, isTokenExpired, verifyToken
-};
+export { decodeToken, generateToken, isTokenExpired };
 

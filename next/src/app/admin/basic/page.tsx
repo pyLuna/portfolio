@@ -1,31 +1,68 @@
+"use client";
 import Button from "@/component/ui/Button";
 import TextField from "@/component/ui/TextField";
+import { useBasicInfoHook } from "@/hooks/useBasicInfoHook";
+import { Api } from "@/lib/utils/api.url";
+import { patch } from "@/lib/utils/fetch";
+import { useState } from "react";
 
 const BasicInfoPage = () => {
+
+    const basicInfo = useBasicInfoHook();
+    const [loading, setLoading] = useState(false);
+
+    const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setLoading(true);
+        const formData = new FormData(e.currentTarget);
+
+        const object = Object.fromEntries(formData.entries());
+
+        const res = await patch(Api.admin.basic, { data: object });
+        setLoading(false);
+        alert(`Save result: ${res}`);
+    }
+
     return (
-        <form className="page flex flex-col gap-4">
+        <form className="page flex flex-col gap-4" onSubmit={handleUpdate}>
+            <h1>Basic Info </h1>
             <TextField
+                required
                 label="Full Name"
-                name="full-name"
+                name="full_name"
                 placeholder="My full name"
+                defaultValue={basicInfo.basicInfo?.full_name}
             />
             <TextField
                 label="Address"
                 name="address"
                 placeholder="My address"
+                defaultValue={basicInfo.basicInfo?.address}
             />
             <TextField
                 label="Zip Code"
-                name="zip-code"
+                name="zip_code"
                 placeholder="0000"
                 type="number"
+                defaultValue={basicInfo.basicInfo?.zip_code}
             />
             <TextField
+                required
                 label="Phone Number"
-                name="phone-number"
+                name="phone_number"
                 placeholder="My Phone Number"
+                type="tel"
+                defaultValue={basicInfo.basicInfo?.phone_number}
             />
-            <Button variant="primary" type="submit">Save</Button>
+            <TextField
+                label="Email"
+                name="email"
+                placeholder="My Email"
+                required
+                type="email"
+                defaultValue={basicInfo.basicInfo?.email}
+            />
+            <Button loading={loading} variant="primary" type="submit">Save</Button>
         </form>
     )
 }
