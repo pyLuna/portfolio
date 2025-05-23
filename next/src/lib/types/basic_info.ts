@@ -7,4 +7,5 @@ export interface BasicInfoType {
     zip_code: string;
     phone_number: string;
     email: string;
+    description: string;
 }

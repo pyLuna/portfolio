@@ -1,14 +1,16 @@
 "use client";
 import Button from "@/component/ui/Button";
+import TextArea from "@/component/ui/TextArea";
 import TextField from "@/component/ui/TextField";
-import { useBasicInfoHook } from "@/hooks/useBasicInfoHook";
+import { useBasicInfo } from "@/hooks/useBasicInfoHook";
+import { APIResponse } from "@/lib/types/response";
 import { Api } from "@/lib/utils/api.url";
 import { patch } from "@/lib/utils/fetch";
 import { useState } from "react";
 
 const BasicInfoPage = () => {
 
-    const basicInfo = useBasicInfoHook();
+    const basicInfo = useBasicInfo();
     const [loading, setLoading] = useState(false);
 
     const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,9 +20,9 @@ const BasicInfoPage = () => {
 
         const object = Object.fromEntries(formData.entries());
 
-        const res = await patch(Api.admin.basic, { data: object });
+        const res = await patch<APIResponse>(Api.admin.basic, { data: object });
         setLoading(false);
-        alert(`Save result: ${res}`);
+        alert(res?.message);
     }
 
     return (
@@ -61,6 +63,13 @@ const BasicInfoPage = () => {
                 required
                 type="email"
                 defaultValue={basicInfo.basicInfo?.email}
+            />
+            <TextArea
+                label="Description"
+                name="description"
+                placeholder="Tell something about yourself"
+                required
+                defaultValue={basicInfo.basicInfo?.description}
             />
             <Button loading={loading} variant="primary" type="submit">Save</Button>
         </form>

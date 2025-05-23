@@ -17,6 +17,7 @@ const ThemeTrigger = () => {
     return (
         <div className='space-x-2'>
             <Button
+                variant='text'
                 onClick={handleThemeChange}
             >
                 {theme === 'light' ? (

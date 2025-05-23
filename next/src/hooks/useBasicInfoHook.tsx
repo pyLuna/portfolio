@@ -4,7 +4,7 @@ import { get, post } from "@/lib/utils/fetch";
 import { useQuery } from "@tanstack/react-query";
 import { useAdminContextHook } from "./useAdminHook";
 
-export const useBasicInfoHook = () => {
+export const useBasicInfo = () => {
     const adminContext = useAdminContextHook();
 
     const { data: basicInfo, isLoading, isError } = useQuery({

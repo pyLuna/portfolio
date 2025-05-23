@@ -23,12 +23,12 @@ const Button = ({
     & ButtonHTMLAttributes<HTMLButtonElement>
 ) => {
 
-    let className = "text-white font-bold py-2 px-4 rounded";
+    let className = "font-bold py-2 px-4 rounded ";
 
-    if (variant === "text") className = "cursor-pointer hover:underline hover:text-primary-200 hover:font-bold bg-transparent";
-    if (variant === "destructive") className += " bg-red-500 hover:bg-red-700";
-    if (variant === "secondary") className += " bg-secondary-500 hover:bg-secondary-700";
-    if (variant === "primary") className += " bg-primary-500 hover:bg-primary-700";
+    if (variant === "text") className += "cursor-pointer hover:underline hover:text-primary-200 hover:font-bold bg-transparent";
+    if (variant === "destructive") className += "text-white bg-red-500 hover:bg-red-700";
+    if (variant === "secondary") className += "text-white bg-secondary-500 hover:bg-secondary-700";
+    if (variant === "primary") className += "text-white bg-primary-500 hover:bg-primary-700";
 
     return (
         <button

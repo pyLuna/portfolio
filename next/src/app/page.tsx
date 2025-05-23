@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <div className="page">
-      <h1 className={`${font.className} grow flex text-center flex-col justify-center text-3xl lg:text-4xl`}>
+      <h1 className={`${font.className} grow flex w-fit place-self-center text-end flex-col justify-center !text-3xl lg:!text-4xl`}>
         If you can dream it, you can do it.
         <span className="text-sm text-gray-400">
           - Walt Disney
