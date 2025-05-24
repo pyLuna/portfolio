@@ -2,7 +2,7 @@
 import { AdminContext } from "@/hooks/useAdminHook";
 import { Admin } from "@/lib/types/admin";
 import { Api } from "@/lib/utils/api.url";
-import { get } from "@/lib/utils/fetch";
+import { get, post } from "@/lib/utils/fetch";
 import Url from "@/lib/utils/url";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
@@ -26,10 +26,20 @@ const AdminContextProvider = ({ children }: { children: ReactNode }) => {
         enabled: !pathname.endsWith("admin"),
     });
 
-    const refresh = async () => {
+    const invalidateQuery = async () => {
         const queryClient = new QueryClient();
         await queryClient.invalidateQueries({ queryKey: ["admin"] });
+    }
+
+    const refresh = async () => {
+        await invalidateQuery();
         console.log("refreshed", admin);
+    }
+
+    const logout = async () => {
+        await post(Api.admin.logout);
+        await invalidateQuery();
+        router.replace(Url.admin.login);
     }
 
     useEffect(() => {
@@ -50,6 +60,7 @@ const AdminContextProvider = ({ children }: { children: ReactNode }) => {
             loading: isLoading,
             error: isError,
             refresh,
+            logout
         }}>
             {children}
         </AdminContext.Provider>

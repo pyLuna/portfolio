@@ -41,14 +41,16 @@ const addUser = async (user: Partial<Admin>) => {
     return result;
 }
 
-const getAdmin = async (id: ObjectId) => {
+const getAdmin = async (id: ObjectId, options?: { password?: boolean }) => {
     const admin = await query<Admin>({
         collection_name: ADMIN,
         queryFn: async (client) => {
             return await client.findOne({ _id: new ObjectId(id) })
         }
     });
-    delete admin.password;
+
+    if (!options?.password) delete admin.password;
+
     return admin;
 }
 

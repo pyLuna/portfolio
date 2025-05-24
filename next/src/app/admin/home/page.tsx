@@ -14,8 +14,8 @@ const AdminPage = () => {
     return (
         <section className="page grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[80px]">
             <MenuTile href={Url.admin.basic} title="Basic Information" subtitle="Update basic information" />
-            <MenuTile href="#" title="Basic Information1" subtitle="Update basic information" />
-            <MenuTile href="#" title="Basic Information2" subtitle="Update basic information" />
+            <MenuTile href={Url.admin.change_password} title="Change Password" subtitle="Update Password" />
+            <MenuTile onClick={() => adminContext?.logout()} title="Logout" subtitle="Logout as admin" />
             <MenuTile href="#" title="Basic Information3" subtitle="Update basic information" />
         </section>
     )

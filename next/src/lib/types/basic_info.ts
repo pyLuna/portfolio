@@ -8,4 +8,5 @@ export interface BasicInfoType {
     phone_number: string;
     email: string;
     description: string;
+    employment_status: string;
 }

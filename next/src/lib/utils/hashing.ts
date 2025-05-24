@@ -4,6 +4,7 @@ const encrypt = async (text: string) => {
 }
 
 const compare = async (text: string, hash: string) => {
+    console.log("comparing", text, hash);
     return await bcryptCompare(text, hash);
 }
 

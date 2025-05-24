@@ -18,7 +18,7 @@ export async function GET() {
 
     if (!isTokenValidRes) return error({ "message": "Token expired." }, { status: 401, string_code: ErrorCode.token_expired });
 
-    const id = decodeToken(token.value!)._id;
+    const id = await decodeToken().then((v) => v._id);
 
     console.log("id from token:", id);
 

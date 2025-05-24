@@ -8,6 +8,7 @@ type AdminContextType = {
     loading: boolean,
     error: boolean,
     refresh: () => void
+    logout: () => void
 }
 
 export const AdminContext = createContext<AdminContextType | null>(null);

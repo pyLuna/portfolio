@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         return error({ "message": "Token expired." }, { status: 401, string_code: ErrorCode.token_expired })
     }
 
-    const id = decodeToken(c.get("token")?.value!)._id;
+    const id = await decodeToken().then((v) => v._id);
 
     const existing = await getBasicInfo();
     if (existing) return error({ "message": "Basic info already exists." }, { status: 400, string_code: ErrorCode.basic_info_already_exists });
@@ -50,7 +50,7 @@ export async function PATCH(req: NextRequest) {
     const data = await req.json() as Partial<BasicInfoType>;
     console.log("body check");
 
-    const id = decodeToken(c.get("token")?.value!)._id;
+    const id = await decodeToken().then((v) => v._id);
     console.log("decode token check");
 
     const result = await updateBasicInfo({ ...data, admin_id: id });

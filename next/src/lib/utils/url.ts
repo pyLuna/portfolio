@@ -5,6 +5,7 @@ export default class Url {
     static admin = {
         login: "/admin",
         home: "/admin/home",
-        basic: "/admin/basic"
+        basic: "/admin/basic",
+        change_password: "/admin/change-password"
     }
 }

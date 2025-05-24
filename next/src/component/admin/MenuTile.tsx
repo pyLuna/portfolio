@@ -1,18 +1,27 @@
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Button from "../ui/Button";
 
 type MenuTileProps = {
-    href: string;
+    href?: string;
     title: string;
     subtitle?: string
+    onClick?: () => void
 }
-const MenuTile = ({ href, title, subtitle }: MenuTileProps) => {
+const MenuTile = ({ href, title, subtitle, onClick }: MenuTileProps) => {
+    const router = useRouter();
+    const handleClick = () => {
+        if (href) router.replace(href);
+        onClick?.();
+    }
+
     return (
-        <Link
-            href={href}
-            className="flex border md:border-0 border-primary-200/80 flex-col gap-1 text-sm p-4 bg-secondary-900/30 hover:bg-secondary-900 rounded-lg">
+        <Button
+            onClick={handleClick}
+            variant="text"
+            className="flex !text-foreground !no-underline border md:border-0 border-primary-200/80 flex-col items-start gap-1 text-sm p-4 bg-secondary-900/30 hover:bg-secondary-900 rounded-lg">
             {title}
             {subtitle && <p className=" text-xs md:text-sm text-gray-400">{subtitle}</p>}
-        </Link>
+        </Button>
     )
 }
 

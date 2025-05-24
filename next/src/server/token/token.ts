@@ -1,6 +1,8 @@
-import { Admin } from "@/lib/types/admin";
 import RecordType from "@/lib/types/record";
+import { ErrorCode } from "@/lib/utils/error.codes";
 import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
+import { error } from "../return.response";
 
 
 /**
@@ -15,10 +17,13 @@ const generateToken = (data: RecordType) => {
     return token;
 }
 
-const decodeToken = (token: string) => {
+const decodeToken = async () => {
+    const cookie = await cookies();
+
+    const token = cookie.get("token")?.value!;
     const decoded = jwt.verify(token, process.env.NEXT_TOKEN_SECRET as string);
 
-    return JSON.parse(JSON.stringify(decoded)) as Admin;
+    return JSON.parse(JSON.stringify(decoded)) as RecordType;
 };
 
 /**
@@ -28,12 +33,27 @@ const decodeToken = (token: string) => {
  * @returns `true` if the token is expired, `false` if it is not.
  */
 
-const isTokenExpired = (token: string) => {
-    const decoded = decodeToken(token)! as jwt.JwtPayload;
+const isTokenExpired = async (token: string) => {
+    const decoded = await decodeToken();
     const dateToday = new Date(Date.now());
     const expirationDate = new Date(decoded.exp!);
     return dateToday > expirationDate;
 };
 
-export { decodeToken, generateToken, isTokenExpired };
+const validateToken = async () => {
+    const cookie = await cookies();
+
+    const token = cookie.get("token")?.value!;
+
+    if (!token) throw error({ "message": "Token not found." }, { status: 401, string_code: ErrorCode.token_invalid });
+
+    const isValid = isTokenExpired(token);
+
+    if (!isValid) {
+        cookie.delete("token");
+        throw error({ "message": "Token expired." }, { status: 401, string_code: ErrorCode.token_expired })
+    }
+}
+
+export { decodeToken, generateToken, isTokenExpired, validateToken };
 

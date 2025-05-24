@@ -21,7 +21,7 @@ const ThemeTrigger = () => {
                 onClick={handleThemeChange}
             >
                 {theme === 'light' ? (
-                    <SunIcon />
+                    <SunIcon className='text-black' />
                 ) : (
                     <MoonIcon />
                 )}
