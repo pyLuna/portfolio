@@ -6,6 +6,7 @@ export default class Url {
         login: "/admin",
         home: "/admin/home",
         basic: "/admin/basic",
-        change_password: "/admin/change-password"
+        change_password: "/admin/change-password",
+        category: "/admin/category",
     }
 }

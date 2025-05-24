@@ -1,5 +1,5 @@
 import { addBasicInfo, getBasicInfo, updateBasicInfo } from "@/lib/basic_info";
-import { BasicInfoType } from "@/lib/types/basic_info";
+import { BasicInfoType } from "@/lib/types/basic_info.type";
 import { ErrorCode } from "@/lib/utils/error.codes";
 import { error, json } from "@/server/return.response";
 import { decodeToken, isTokenExpired } from "@/server/token/token";

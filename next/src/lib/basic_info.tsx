@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { BasicInfoType } from "./types/basic_info";
+import { BasicInfoType } from "./types/basic_info.type";
 import { BASIC } from "./utils/constants";
 import query from "./utils/query";
 

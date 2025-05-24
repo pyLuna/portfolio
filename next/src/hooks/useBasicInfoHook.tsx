@@ -1,4 +1,4 @@
-import { BasicInfoType } from "@/lib/types/basic_info";
+import { BasicInfoType } from "@/lib/types/basic_info.type";
 import { Api } from "@/lib/utils/api.url";
 import { get, post } from "@/lib/utils/fetch";
 import { useQuery } from "@tanstack/react-query";

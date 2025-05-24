@@ -19,7 +19,7 @@ const MultipleLayer = ({ children }: { children: ReactNode }) => {
     }
 
     // Create a client
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient();
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider enableSystem={true}>

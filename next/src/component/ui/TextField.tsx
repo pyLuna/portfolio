@@ -2,7 +2,7 @@ import { InputHTMLAttributes } from "react";
 import Input from "./Input";
 
 type TextFieldProps = {
-    label: string;
+    label?: string;
     description?: string;
 } & InputHTMLAttributes<HTMLInputElement>
 
@@ -13,7 +13,7 @@ const TextField = ({
 }: TextFieldProps) => {
     return (
         <label className="flex flex-col gap-1">
-            <p>{label}</p>
+            {label && <p>{label}</p>}
             <Input {...props} />
             {description && (
                 <small className="text-sm text-gray-400">{description}</small>

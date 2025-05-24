@@ -1,16 +1,18 @@
 "use client";
 import { AdminContext } from "@/hooks/useAdminHook";
-import { Admin } from "@/lib/types/admin";
+import { Admin } from "@/lib/types/admin.type";
 import { Api } from "@/lib/utils/api.url";
 import { get, post } from "@/lib/utils/fetch";
 import Url from "@/lib/utils/url";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 
 const AdminContextProvider = ({ children }: { children: ReactNode }) => {
     const router = useRouter();
+    const queryClient = useQueryClient();
     const pathname = usePathname();
+
     const { data: admin, isLoading, isError } = useQuery({
         queryKey: ["admin"],
         queryFn: async () => {
@@ -27,7 +29,6 @@ const AdminContextProvider = ({ children }: { children: ReactNode }) => {
     });
 
     const invalidateQuery = async () => {
-        const queryClient = new QueryClient();
         await queryClient.invalidateQueries({ queryKey: ["admin"] });
     }
 

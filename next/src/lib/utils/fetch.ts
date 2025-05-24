@@ -3,7 +3,7 @@ import RecordType from "../types/record";
 type FetchOption = {
     data?: FormData | RecordType | string;
     auth?: boolean;
-    method: "GET" | "POST" | "PATCH";
+    method: "GET" | "POST" | "PATCH" | "DELETE";
 }
 /**
  * Alias for `appFetch` where the method is "PATCH"
@@ -56,6 +56,23 @@ const post = async <T>(url: string, options?: {
     });
 }
 
+/**
+ * Alias for `appFetch` where the method is "DELETE"
+ * @param url Api url
+ * @param options `FetchOption`
+ * @returns 
+ */
+const deleteMethod = async <T>(url: string, options?: {
+    data?: RecordType,
+    auth?: boolean
+}): Promise<T | undefined> => {
+    return await appFetch<T>(url, {
+        data: options?.data,
+        auth: options?.auth,
+        method: "DELETE"
+    });
+}
+
 
 const appFetch = async <T>(
     url: string,
@@ -83,6 +100,6 @@ const appFetch = async <T>(
 }
 
 export {
-    appFetch, get, patch, post
+    appFetch, deleteMethod, get, patch, post
 };
 

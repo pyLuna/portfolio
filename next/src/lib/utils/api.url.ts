@@ -5,6 +5,7 @@ export class Api {
         my: '/api/admin/my',
         logout: '/api/admin/logout',
         basic: '/api/admin/basic',
-        change_password: '/api/admin/change-password'
+        change_password: '/api/admin/change-password',
+        category: '/api/admin/category',
     }
 }

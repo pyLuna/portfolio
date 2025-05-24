@@ -1,5 +1,5 @@
 "use client";
-import { Admin } from "@/lib/types/admin";
+import { Admin } from "@/lib/types/admin.type";
 import { createContext, useContext } from "react";
 
 type AdminContextType = {

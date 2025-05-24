@@ -1,4 +1,4 @@
-import { Admin } from "@/lib/types/admin";
+import { Admin } from "@/lib/types/admin.type";
 import { ADMIN } from "@/lib/utils/constants";
 import query from "@/lib/utils/query";
 import { ObjectId } from "mongodb";

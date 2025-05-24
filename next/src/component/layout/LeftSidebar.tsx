@@ -13,7 +13,7 @@ const LeftSideBar = () => {
     if (basic_info.isLoading) return <SkeletonLeftSideBar></SkeletonLeftSideBar>;
 
     return (
-        <aside className="md:sticky md:top-24 self-start m-4">
+        <aside className="text-center md:text-left md:sticky md:top-24 self-start m-4">
             <h1 className="text-xl font-bold mb-6">{basic_info.basicInfo?.full_name}</h1>
             <p className="whitespace-pre-line text-sm text-gray-600 dark:text-gray-400">{basic_info.basicInfo?.description}</p>
         </aside>
