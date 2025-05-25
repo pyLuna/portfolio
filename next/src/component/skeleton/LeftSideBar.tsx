@@ -1,4 +1,4 @@
-const SkeletonLeftSideBar = () => {
+const MyDescriptionSekeleton = () => {
     return (
         <div className="m-4">
             <div className="animate-pulse bg-gray-200 w-full rounded-md h-7 mb-6"></div>
@@ -18,4 +18,4 @@ const SkeletonLeftSideBar = () => {
         </div>
     );
 }
-export default SkeletonLeftSideBar;
+export default MyDescriptionSekeleton;

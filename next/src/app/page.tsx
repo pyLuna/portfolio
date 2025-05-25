@@ -1,4 +1,5 @@
 "use client";
+import MyDescription from "@/component/layout/MyDescription";
 import { useThemeHook } from "@/hooks/useThemeHook";
 import { Pattaya } from "next/font/google";
 
@@ -17,6 +18,7 @@ const Home = () => {
           - Walt Disney
         </span>
       </h1>
+      <MyDescription className="block md:hidden mt-8" />
     </div>
   );
 }
