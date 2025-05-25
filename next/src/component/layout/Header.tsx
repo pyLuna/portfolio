@@ -7,7 +7,7 @@ import ThemeToggle from "./ThemeTrigger";
 const Header = () => {
     return (
         <section className="sticky top-0 flex flex-row gap-4 bg-background items-center justify-between">
-            <Link href={Url.admin.login} className="text-xl font-semibold m-2 border rounded-full p-2">
+            <Link href={Url.admin.home} className="text-xl font-semibold m-2 border rounded-full p-2">
                 Logo
             </Link>
 

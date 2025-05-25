@@ -8,5 +8,9 @@ export default class Url {
         basic: "/admin/basic",
         change_password: "/admin/change-password",
         category: "/admin/category",
+        contents: {
+            view: "/admin/contents",
+            create: "/admin/contents/create",
+        },
     }
 }
