@@ -11,10 +11,10 @@ import { get, patch } from "@/lib/utils/fetch";
 import { extractFormData } from "@/lib/utils/functions";
 import Url from "@/lib/utils/url";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, Suspense, useEffect, useState } from "react";
 
-const UpdatePage = () => {
-    const id = useSearchParams().get("id");
+const RenderPage = () => {
+    const id = useSearchParams().get("id")!;
     const categories = useCategory();
     const route = useRouter();
     const [loading, setLoading] = useState(false);
@@ -22,7 +22,6 @@ const UpdatePage = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
-        if (!id) return;
         const getContent = async () => {
             const re = await get<Content>(Api.admin.contents.single(id));
             console.log("result from api", re);
@@ -80,6 +79,14 @@ const UpdatePage = () => {
                 Submit
             </Button>
         </form>
+    )
+}
+
+const UpdatePage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RenderPage />
+        </Suspense>
     )
 }
 
