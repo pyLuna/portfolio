@@ -6,6 +6,7 @@ import { useBasicInfo } from "@/hooks/useBasicInfoHook";
 import { APIResponse } from "@/lib/types/response";
 import { Api } from "@/lib/utils/api.url";
 import { patch } from "@/lib/utils/fetch";
+import { extractFormData } from "@/lib/utils/functions";
 import { useState } from "react";
 
 const BasicInfoPage = () => {
@@ -17,11 +18,9 @@ const BasicInfoPage = () => {
         e.preventDefault();
         if (loading) return;
         setLoading(true);
-        const formData = new FormData(e.currentTarget);
+        const data = extractFormData(e);
 
-        const object = Object.fromEntries(formData.entries());
-
-        const res = await patch<APIResponse>(Api.admin.basic, { data: object });
+        const res = await patch<APIResponse>(Api.admin.basic, { data });
         setLoading(false);
         alert(res?.message);
     }

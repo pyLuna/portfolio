@@ -18,9 +18,7 @@ const generateToken = (data: RecordType) => {
 }
 
 const decodeToken = async () => {
-    const cookie = await cookies();
-
-    const token = cookie.get("token")?.value!;
+    const token = await getToken();
     const decoded = jwt.verify(token, process.env.NEXT_TOKEN_SECRET as string);
 
     return JSON.parse(JSON.stringify(decoded)) as RecordType;
@@ -40,20 +38,21 @@ const isTokenExpired = async (token: string) => {
     return dateToday > expirationDate;
 };
 
-const validateToken = async () => {
+const getToken = async () => {
     const cookie = await cookies();
+    return cookie.get("token")?.value!;
+}
 
-    const token = cookie.get("token")?.value!;
-
+const validateToken = async () => {
+    const token = await getToken();
     if (!token) throw error({ "message": "Token not found." }, { status: 401, string_code: ErrorCode.token_invalid });
 
     const isValid = isTokenExpired(token);
 
     if (!isValid) {
-        cookie.delete("token");
         throw error({ "message": "Token expired." }, { status: 401, string_code: ErrorCode.token_expired })
     }
 }
 
-export { decodeToken, generateToken, isTokenExpired, validateToken };
+export { decodeToken, generateToken, getToken, isTokenExpired, validateToken };
 

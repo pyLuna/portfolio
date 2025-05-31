@@ -12,7 +12,7 @@ import ViewSourceCode from "./ViewSourceCode";
 const MultipleLayer = ({ children }: { children: ReactNode }) => {
 
     const path = usePathname();
-    let mainClassName = "flex flex-col md:grid md:grid-cols-[250px_1fr] gap-4";
+    let mainClassName = "flex flex-col md:grid md:grid-cols-[250px_1fr] gap-14 md:gap-0";
 
     if (path.includes("admin")) {
         mainClassName = "";
@@ -29,7 +29,7 @@ const MultipleLayer = ({ children }: { children: ReactNode }) => {
                     <div className="grid grid-rows-[80px_1fr] max-w-4xl lg:max-w-5xl mx-auto">
                         <Header />
                         <main className={mainClassName}>
-                            <MyDescription className="hidden md:block" />
+                            <MyDescription />
                             {children}
                         </main>
                     </div>

@@ -18,9 +18,9 @@ const MenuTile = ({ href, title, subtitle, onClick }: MenuTileProps) => {
         <Button
             onClick={handleClick}
             variant="text"
-            className="flex !text-foreground !no-underline border md:border-0 border-primary-200/80 flex-col items-start gap-1 text-sm p-4 bg-secondary-900/30 hover:bg-secondary-900 rounded-lg">
+            className="flex !text-foreground !no-underline border border-primary-200/80 flex-col items-start gap-1 text-sm p-4 bg-secondary-900/30 hover:bg-secondary-900 rounded-lg">
             {title}
-            {subtitle && <p className=" text-xs md:text-sm text-gray-400">{subtitle}</p>}
+            {subtitle && <small className="!text-[10px] md:text-sm text-gray-400">{subtitle}</small>}
         </Button>
     )
 }

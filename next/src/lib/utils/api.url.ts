@@ -7,5 +7,9 @@ export class Api {
         basic: '/api/admin/basic',
         change_password: '/api/admin/change-password',
         category: '/api/admin/category',
+        contents: {
+            main: '/api/admin/contents',
+            get: (id?: string) => `/api/admin/contents?id=${id}`,
+        },
     }
 }
