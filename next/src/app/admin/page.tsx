@@ -2,6 +2,7 @@
 import Debug from "@/component/Debug";
 import Button from "@/component/ui/Button";
 import Input from "@/component/ui/Input";
+import Loading from "@/component/ui/Loading";
 import { useAdminContextHook } from "@/hooks/useAdminHook";
 import { Api } from "@/lib/utils/api.url";
 import { post } from "@/lib/utils/fetch";
@@ -43,6 +44,8 @@ const AdminLoginPage = () => {
 
     return (
         <section className="page">
+            {adminContext?.loading && <Loading />}
+
             <h1>Admin Login</h1>
             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4 mt-2 max-w-lg">
                 <label className="mt-2" htmlFor="username">Username</label>

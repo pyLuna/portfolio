@@ -14,7 +14,6 @@ export async function GET() {
     }
 }
 
-
 export async function POST(req: NextRequest) {
     try {
         await validateToken();
@@ -31,7 +30,7 @@ export async function PATCH(req: NextRequest) {
         await validateToken();
 
         const body = await req.json();
-        const result = await updateContent(body._id, body as Content);
+        const result = await updateContent(body as Content);
         return json(result);
     } catch (err) {
         return error({ "message": JSON.stringify(err) });

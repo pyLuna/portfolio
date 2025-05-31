@@ -16,6 +16,18 @@ export const getContents = async () => {
     return result;
 }
 
+export const getContentById = async (id: string | ObjectId) => {
+    const result = await query<Category>({
+        collection_name: CONTENTS,
+        queryFn: async (client) => {
+            // Get all categories, does not need pagination
+            return await client.findOne({ _id: new ObjectId(id) });
+        }
+    });
+
+    return result;
+}
+
 export const addContent = async (content: Content) => {
     const result = await query<Content>({
         collection_name: CONTENTS,
@@ -27,11 +39,12 @@ export const addContent = async (content: Content) => {
     return result;
 }
 
-export const updateContent = async (_id: ObjectId, content: Partial<Content>) => {
+export const updateContent = async (content: Partial<Content>) => {
+    const { _id, ...contents } = content;
     const result = await query<Content>({
         collection_name: CONTENTS,
         queryFn: async (client) => {
-            return await client.updateOne({ _id: new ObjectId(_id) }, { $set: { ...content } });
+            return await client.updateOne({ _id: new ObjectId(_id) }, { $set: { ...contents } });
         }
     });
     return result;
