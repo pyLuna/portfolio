@@ -93,7 +93,7 @@ body{
 
 @layer {
   .page{
-    @apply m-4 min-h-screen
+    @apply m-4 mb-20 min-h-screen
   }
 
   .page h1{
@@ -102,6 +102,10 @@ body{
 
   .header a{
     @apply hover:underline hover:text-primary-200 hover:font-bold
+  }
+
+  .divider {
+    @apply border-foreground/20
   }
 }
 

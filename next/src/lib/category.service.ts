@@ -18,7 +18,7 @@ export const addCategory = async (category: Category) => {
     const result = await query<Category>({
         collection_name: CATEGORY,
         queryFn: async (client) => {
-            return await client.insertOne(category);
+            return await client.insertOne({ ...category, created_at: new Date() });
         }
     });
 

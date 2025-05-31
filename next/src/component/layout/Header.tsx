@@ -18,9 +18,9 @@ const Header = () => {
                     <Link href="/api/test">Test</Link>
                 </Debug>
                 <Link href="#">Contact</Link>
+                <ThemeToggle />
             </nav>
 
-            <ThemeToggle />
         </section>
     );
 }

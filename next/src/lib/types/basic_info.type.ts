@@ -9,4 +9,8 @@ export interface BasicInfoType {
     email: string;
     description: string;
     employment_status: string;
+    municipality: string;
+    country: string;
+    years_of_experience: string;
+    projects: number;
 }

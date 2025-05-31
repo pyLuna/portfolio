@@ -40,10 +40,10 @@ const CreatePostPage = () => {
 
             <TextField label="Location" name="location" />
             <TextField label="Title" name="title" />
-            <TextField label="Position" name="position" />
+            <TextField label="Position/Status" name="position" />
 
             <div className="flex gap-4">
-                <TextField label="From" required placeholder="YYYY" name="from" />
+                <TextField label="From" placeholder="YYYY" name="from" />
                 <TextField label="To" name="to" placeholder="YYYY" />
             </div>
 

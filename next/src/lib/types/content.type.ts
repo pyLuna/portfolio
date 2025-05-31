@@ -10,4 +10,6 @@ export type Content = {
     location?: string;
     position?: string;
     description?: string;
+    created_at: Date;
+    updated_at?: Date;
 }

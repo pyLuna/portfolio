@@ -12,7 +12,7 @@ import ViewSourceCode from "./ViewSourceCode";
 const MultipleLayer = ({ children }: { children: ReactNode }) => {
 
     const path = usePathname();
-    let mainClassName = "flex flex-col md:grid md:grid-cols-[250px_1fr] gap-14 md:gap-0";
+    let mainClassName = "flex flex-col lg:grid lg:grid-cols-[250px_1fr] gap-14 lg:gap-0";
 
     if (path.includes("admin")) {
         mainClassName = "";

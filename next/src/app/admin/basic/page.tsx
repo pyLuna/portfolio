@@ -37,10 +37,40 @@ const BasicInfoPage = () => {
                     defaultValue={basicInfo.basicInfo?.full_name}
                 />
                 <TextField
+                    required
+                    label="Number of Projects"
+                    name="projects"
+                    placeholder="Total number of handled projects"
+                    type="number"
+                    defaultValue={basicInfo.basicInfo?.projects}
+                />
+                <TextField
+                    required
+                    label="Years of Experience"
+                    name="years_of_experience"
+                    placeholder="Total years of work experience"
+                    type="number"
+                    defaultValue={basicInfo.basicInfo?.years_of_experience}
+                />
+                <TextField
                     label="Address"
                     name="address"
                     placeholder="My address"
                     defaultValue={basicInfo.basicInfo?.address}
+                />
+                <TextField
+                    label="Municipality"
+                    name="municipality"
+                    placeholder="Quezon City"
+                    type="text"
+                    defaultValue={basicInfo.basicInfo?.municipality}
+                />
+                <TextField
+                    label="Country"
+                    name="country"
+                    placeholder="Philipphines"
+                    type="text"
+                    defaultValue="Philipphines"
                 />
                 <TextField
                     label="Zip Code"

@@ -23,6 +23,7 @@ const ContentsPage = () => {
             <div className="flex flex-col gap-4">
                 {contents?.map((content) => (
                     <Link
+                        className="flex justify-between"
                         key={content._id.toString()}
                         href={`${Url.admin.contents.update(content._id)}`}>
                         <div className="flex flex-col">
@@ -30,8 +31,9 @@ const ContentsPage = () => {
                                 <b>{content.title}</b>
                                 <Badge>{content.category}</Badge>
                             </p>
-                            <small>{content.from} - {content.to}</small>
+                            <small>{content.from} - {content.to} <span className="text-gray-400">({content.position})</span></small>
                         </div>
+                        <small className="text-gray-400">{new Date(content?.created_at).toLocaleString()}</small>
                     </Link>
                 ))}
             </div>

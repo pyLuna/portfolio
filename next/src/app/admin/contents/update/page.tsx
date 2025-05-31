@@ -67,10 +67,10 @@ const UpdatePage = () => {
 
             <TextField label="Location" defaultValue={content?.location} name="location" />
             <TextField label="Title" defaultValue={content?.title} name="title" />
-            <TextField label="Position" defaultValue={content?.position} name="position" />
+            <TextField label="Position/Status" defaultValue={content?.position} name="position" />
 
             <div className="flex gap-4">
-                <TextField label="From" defaultValue={content?.from} required placeholder="YYYY" name="from" />
+                <TextField label="From" defaultValue={content?.from} placeholder="YYYY" name="from" />
                 <TextField label="To" defaultValue={content?.to} name="to" placeholder="YYYY" />
             </div>
 

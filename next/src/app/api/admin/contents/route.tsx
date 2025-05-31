@@ -5,13 +5,8 @@ import { validateToken } from "@/server/token/token";
 import { NextRequest } from "next/server";
 
 export async function GET() {
-    try {
-        await validateToken();
-        const result = await getContents();
-        return json(result);
-    } catch (err) {
-        return error({ "message": JSON.stringify(err) });
-    }
+    const result = await getContents();
+    return json(result);
 }
 
 export async function POST(req: NextRequest) {
