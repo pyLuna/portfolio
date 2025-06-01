@@ -7,12 +7,17 @@ import { APIResponse } from "@/lib/types/response";
 import { Api } from "@/lib/utils/api.url";
 import { patch } from "@/lib/utils/fetch";
 import { extractFormData } from "@/lib/utils/functions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BasicInfoPage = () => {
 
-    const basicInfo = useBasicInfo();
+    const { basicInfo } = useBasicInfo();
     const [loading, setLoading] = useState(false);
+    const [employed, setEmployed] = useState(false);
+
+    useEffect(() => {
+        if (basicInfo?.employment_status) setEmployed(true);
+    }, [basicInfo]);
 
     const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -20,7 +25,12 @@ const BasicInfoPage = () => {
         setLoading(true);
         const data = extractFormData(e);
 
-        const res = await patch<APIResponse>(Api.admin.basic, { data });
+        const res = await patch<APIResponse>(Api.admin.basic, {
+            data: {
+                ...data,
+                employment_status: employed
+            }
+        });
         setLoading(false);
         alert(res?.message);
     }
@@ -30,11 +40,19 @@ const BasicInfoPage = () => {
             <h1>Basic Info </h1>
             <form className="flex flex-col gap-4" onSubmit={handleUpdate}>
                 <TextField
+                    labelClass="!flex-row justify-between pr-8"
+                    label="Looking for Employment"
+                    name="employment_status"
+                    type="checkbox"
+                    onChange={(e) => setEmployed(e.target.checked)}
+                    checked={employed}
+                />
+                <TextField
                     required
                     label="Full Name"
                     name="full_name"
                     placeholder="My full name"
-                    defaultValue={basicInfo.basicInfo?.full_name}
+                    defaultValue={basicInfo?.full_name}
                 />
                 <TextField
                     required
@@ -42,7 +60,7 @@ const BasicInfoPage = () => {
                     name="projects"
                     placeholder="Total number of handled projects"
                     type="number"
-                    defaultValue={basicInfo.basicInfo?.projects}
+                    defaultValue={basicInfo?.projects}
                 />
                 <TextField
                     required
@@ -50,20 +68,20 @@ const BasicInfoPage = () => {
                     name="years_of_experience"
                     placeholder="Total years of work experience"
                     type="number"
-                    defaultValue={basicInfo.basicInfo?.years_of_experience}
+                    defaultValue={basicInfo?.years_of_experience}
                 />
                 <TextField
                     label="Address"
                     name="address"
                     placeholder="My address"
-                    defaultValue={basicInfo.basicInfo?.address}
+                    defaultValue={basicInfo?.address}
                 />
                 <TextField
                     label="Municipality"
                     name="municipality"
                     placeholder="Quezon City"
                     type="text"
-                    defaultValue={basicInfo.basicInfo?.municipality}
+                    defaultValue={basicInfo?.municipality}
                 />
                 <TextField
                     label="Country"
@@ -77,7 +95,7 @@ const BasicInfoPage = () => {
                     name="zip_code"
                     placeholder="0000"
                     type="number"
-                    defaultValue={basicInfo.basicInfo?.zip_code}
+                    defaultValue={basicInfo?.zip_code}
                 />
                 <TextField
                     required
@@ -85,7 +103,7 @@ const BasicInfoPage = () => {
                     name="phone_number"
                     placeholder="My Phone Number"
                     type="tel"
-                    defaultValue={basicInfo.basicInfo?.phone_number}
+                    defaultValue={basicInfo?.phone_number}
                 />
                 <TextField
                     label="Email"
@@ -93,21 +111,14 @@ const BasicInfoPage = () => {
                     placeholder="My Email"
                     required
                     type="email"
-                    defaultValue={basicInfo.basicInfo?.email}
+                    defaultValue={basicInfo?.email}
                 />
-                {/* <TextField
-                            label="Employment Status"
-                            name="employment_status"
-                            required
-                            type="checkbox"
-                            defaultValue={basicInfo.basicInfo?.employment_status}
-                        /> */}
                 <TextArea
                     label="Description"
                     name="description"
                     placeholder="Tell something about yourself"
                     required
-                    defaultValue={basicInfo.basicInfo?.description}
+                    defaultValue={basicInfo?.description}
                 />
 
                 <Button

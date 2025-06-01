@@ -16,9 +16,9 @@ const Home = () => {
   if (!theme.mounted) return null;
 
   return (
-    <div className="page flex flex-col gap-16">
+    <div className="page flex flex-col gap-8">
       <hr className="block lg:hidden divider" />
-      <h1 className={`${font.className} flex w-full text-center flex-col !text-3xl lg:!text-4xl lg:mt-8`}>
+      <h1 className={`${font.className} flex w-full text-center flex-col !text-3xl lg:!text-4xl my-12`}>
         If you can dream it, you can do it.
         <span className="text-sm text-gray-400">
           - Walt Disney

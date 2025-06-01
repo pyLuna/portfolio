@@ -9,7 +9,7 @@ const font = Fascinate({ weight: ["400"], subsets: ["latin"] });
 
 const Header = () => {
     return (
-        <section className="sticky top-0 flex flex-row gap-4 pl-8 lg:pl-0 bg-background items-center justify-between">
+        <section className="sticky top-0 flex flex-row gap-4 pl-6 lg:pl-0 bg-background items-center justify-between">
             <Link href={Url.admin.home} className="cursor-default">
                 <span className={`${font.className} !text-2xl`}>jo.</span>
             </Link>

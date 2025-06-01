@@ -2,8 +2,8 @@ const InfoTile = ({ label, value, id }: { label: string; value: string; id?: str
 
     return (
         <a href={`#${id}`} className="space-y-2">
-            <b className="text-lg md:text-xl">{label}</b>
-            <p className="text-sm">{value}</p>
+            <b>{label}</b>
+            <p className="text-xs lg:text-sm">{value}</p>
         </a>
     )
 }
