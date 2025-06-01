@@ -17,7 +17,7 @@ const MyDescription = () => {
     );
 
     return (
-        <aside className="text-center lg:text-left lg:sticky lg:top-24 self-start lg:mr-8 mt-12 lg:m-0">
+        <aside className="text-center lg:text-left lg:sticky lg:top-24 self-start lg:mr-8 mt-12 mx-4 lg:m-0">
             <h1 className="text-xl font-bold mb-6">{basic_info.basicInfo?.full_name}</h1>
             <p className="whitespace-pre-line text-sm text-gray-600 dark:text-gray-400">{basic_info.basicInfo?.description}</p>
         </aside>

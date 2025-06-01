@@ -1,9 +1,6 @@
 "use client";
-import Button from "@/component/ui/Button";
-import Select from "@/component/ui/Select";
-import TextArea from "@/component/ui/TextArea";
-import TextField from "@/component/ui/TextField";
-import { useCategory } from "@/hooks/useCategoryHook";
+import ContentForm from "@/component/contents/ContentForm";
+import Loading from "@/component/ui/Loading";
 import { Content } from "@/lib/types/content.type";
 import { APIResponse } from "@/lib/types/response";
 import { Api } from "@/lib/utils/api.url";
@@ -15,19 +12,16 @@ import { FormEvent, Suspense, useEffect, useState } from "react";
 
 const RenderPage = () => {
     const id = useSearchParams().get("id")!;
-    const categories = useCategory();
     const route = useRouter();
     const [loading, setLoading] = useState(false);
-    const [content, setContent] = useState<Content | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState("");
+    const [content, setContent] = useState<Content | undefined>(undefined);
 
     useEffect(() => {
         const getContent = async () => {
             const re = await get<Content>(Api.admin.contents.single(id));
             console.log("result from api", re);
-            if (!re) return null;
+            if (!re) return undefined;
             setContent(re);
-            setSelectedCategory(re.category);
         }
         getContent();
     }, [id]);
@@ -50,41 +44,14 @@ const RenderPage = () => {
 
     return (
         <form className="page flex flex-col gap-4" onSubmit={handleContentUpdate}>
-            <Select
-                label="Category"
-                name="category"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                required>
-                <option value="" className="bg-background" disabled>Choose Category</option>
-                {categories.categories?.map((category) => (
-                    <option key={category.code} className="bg-background" value={category.code}>
-                        {category.name}
-                    </option>
-                ))}
-            </Select>
-
-            <TextField label="Location" defaultValue={content?.location} name="location" />
-            <TextField label="Title" defaultValue={content?.title} name="title" />
-            <TextField label="Position/Status" defaultValue={content?.position} name="position" />
-
-            <div className="flex gap-4">
-                <TextField label="From" defaultValue={content?.from} placeholder="YYYY" name="from" />
-                <TextField label="To" defaultValue={content?.to} name="to" placeholder="YYYY" />
-            </div>
-
-            <TextArea rows={20} defaultValue={content?.description} placeholder="Describe your work" label="Description" name="description" />
-
-            <Button type="submit" loading={loading}>
-                Submit
-            </Button>
+            <ContentForm loading={loading} content={content} />
         </form>
     )
 }
 
 const UpdatePage = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
             <RenderPage />
         </Suspense>
     )

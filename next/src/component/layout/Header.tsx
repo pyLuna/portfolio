@@ -1,14 +1,17 @@
 "use client";
 import Url from "@/lib/utils/url";
+import { Fascinate } from "next/font/google";
 import Link from "next/link";
 import Debug from "../Debug";
 import ThemeToggle from "./ThemeTrigger";
 
+const font = Fascinate({ weight: ["400"], subsets: ["latin"] });
+
 const Header = () => {
     return (
-        <section className="sticky top-0 flex flex-row gap-4 bg-background items-center justify-between">
-            <Link href={Url.admin.home} className="text-xl font-semibold m-2 border rounded-full p-2">
-                Logo
+        <section className="sticky top-0 flex flex-row gap-4 pl-8 lg:pl-0 bg-background items-center justify-between">
+            <Link href={Url.admin.home} className="cursor-default">
+                <span className={`${font.className} !text-2xl`}>jo.</span>
             </Link>
 
             <nav className="header flex gap-4 items-center text-sm font-semibold">

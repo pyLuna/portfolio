@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 const Contents = ({
     category,
     label,
-    children
+    children,
 }: {
     category: string;
     label: string,
-    children: (content: Content) => React.ReactNode
+    children: (content: Content) => React.ReactNode;
 }) => {
 
     const [contents, setContents] = useState<Content[] | null>([]);
@@ -26,9 +26,9 @@ const Contents = ({
 
 
     return (
-        <section className="flex flex-col gap-8">
+        <section id={category} className="flex flex-col gap-6">
             <h1>{label}</h1>
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
                 {contents?.map((content) => (
                     children && children(content)
                 ))}
