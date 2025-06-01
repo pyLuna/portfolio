@@ -1,6 +1,7 @@
 "use client";
 import InfoTile from "@/component/basic/InfoTile";
 import Education from "@/component/contents/Education";
+import Experience from "@/component/contents/Experience";
 import Projects from "@/component/contents/Projects";
 import Loading from "@/component/ui/Loading";
 import { useBasicInfo } from "@/hooks/useBasicInfoHook";
@@ -53,6 +54,7 @@ const Home = () => {
       <hr className="divider" />
 
       <Projects />
+      <Experience />
       <Education />
 
     </div>
