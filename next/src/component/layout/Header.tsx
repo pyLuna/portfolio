@@ -2,7 +2,6 @@
 import Url from "@/lib/utils/url";
 import { Fascinate } from "next/font/google";
 import Link from "next/link";
-import Debug from "../Debug";
 import ThemeToggle from "./ThemeTrigger";
 
 const font = Fascinate({ weight: ["400"], subsets: ["latin"] });
@@ -17,9 +16,12 @@ const Header = () => {
             <nav className="header flex gap-4 items-center text-sm font-semibold">
                 <Link href={Url.home}>Home</Link>
                 <a href={Url.resume} target="_blank">Resume</a>
-                <Debug>
-                    <Link href="/api/test">Test</Link>
-                </Debug>
+                <a
+                    target="_blank"
+                    href={"https://github.com/pyLuna/portfolio/tree/main/next"}
+                >
+                    Source Code
+                </a>
                 <Link href="#">Contact</Link>
                 <ThemeToggle />
             </nav>
