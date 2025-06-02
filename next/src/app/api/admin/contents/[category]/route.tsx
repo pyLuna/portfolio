@@ -4,6 +4,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
     const category = req.nextUrl.pathname.split("/").pop();
-    const result = await getContentsByCategory(category!);
+    const limit = req.nextUrl.searchParams.get("limit");
+
+    const result = await getContentsByCategory(category!, parseInt(limit!));
     return json(result);
 }

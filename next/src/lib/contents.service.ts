@@ -60,12 +60,12 @@ export const deleteConent = async (_id: ObjectId) => {
     return result;
 }
 
-export const getContentsByCategory = async (category: string) => {
+export const getContentsByCategory = async (category: string, limit?: number) => {
     const result = await query<Content>({
         collection_name: CONTENTS,
         queryFn: async (client) => {
             // Get all categories, does not need pagination
-            return await client.find({ category: category }, { sort: { created_at: -1 }, limit: 5 }).toArray();
+            return await client.find({ category: category }, { sort: { created_at: -1 }, limit }).toArray();
         }
     });
 

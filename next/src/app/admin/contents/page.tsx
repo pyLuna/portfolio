@@ -1,43 +1,21 @@
 "use client";
-import Badge from "@/component/ui/Badge";
-import Loading from "@/component/ui/Loading";
-import { useContent } from "@/hooks/useContentHook";
+import AdminContents from "@/component/contents/AdminContents";
+import CategoryPicker from "@/component/contents/CategoryPicker";
 import Url from "@/lib/utils/url";
 import Link from "next/link";
+import { useState } from "react";
 
 const ContentsPage = () => {
-
-    const { contents, isLoading, isError } = useContent();
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
 
     return (
-        <section className="page">
-            <article className="flex justify-between mb-8">
+        <section className="page space-y-6">
+            <article className="flex justify-between">
                 <h1>Contents</h1>
                 <Link className="button" href={Url.admin.contents.create}>Create New</Link>
             </article>
-
-            {isLoading && <Loading />}
-            {isError && <p>Error fetching contents</p>}
-            {!contents?.length && !isLoading && !isError && <small>No contents</small>}
-
-            <div className="flex flex-col gap-4">
-                {contents?.map((content) => (
-                    <Link
-                        className="flex justify-between"
-                        key={content._id.toString()}
-                        href={`${Url.admin.contents.update(content._id)}`}>
-                        <div className="flex flex-col">
-                            <p className="flex gap-4">
-                                <b>{content.title}</b>
-                                <Badge>{content.category}</Badge>
-                            </p>
-                            <small>{content.from} - {content.to} <span className="text-gray-400">({content.position})</span></small>
-                        </div>
-                        <small className="text-gray-400">{new Date(content?.created_at).toLocaleString()}</small>
-                    </Link>
-                ))}
-            </div>
-
+            <CategoryPicker selected={selectedCategory} onSelect={(v) => setSelectedCategory(v)} />
+            <AdminContents selectedCategory={selectedCategory} />
         </section>
     )
 }

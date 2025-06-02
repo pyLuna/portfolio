@@ -39,6 +39,7 @@ const ContentForm = ({
             <TextField label="Title" defaultValue={content?.title} name="title" />
             <TextField label="Position/Status" defaultValue={content?.position} name="position" />
             <TextField label="Link" defaultValue={content?.url} name="url" />
+            <TextField label="Icon" defaultValue={content?.icon} name="icon" />
 
             <div className="flex gap-4">
                 <TextField label="From" defaultValue={content?.from} placeholder="YYYY" name="from" />

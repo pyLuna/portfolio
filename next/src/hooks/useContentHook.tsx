@@ -4,13 +4,17 @@ import { get } from "@/lib/utils/fetch";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAdminContextHook } from "./useAdminHook";
 
-export const useContent = () => {
+export const useContent = (category?: string) => {
     const adminContext = useAdminContextHook();
     const queryClient = useQueryClient();
     const { data: contents, isLoading, isError } = useQuery({
         queryKey: ["contents"],
         queryFn: async () => {
-            const re = await get<Content[]>(Api.admin.contents.main);
+            let uri = Api.admin.contents.main;
+            console.log("category", category);
+            if (category && category !== "") uri = Api.admin.contents.get(category);
+
+            const re = await get<Content[]>(uri);
             if (!re) return null;
             return re;
         },

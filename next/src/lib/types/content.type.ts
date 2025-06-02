@@ -13,4 +13,5 @@ export type Content = {
     created_at: Date;
     updated_at?: Date;
     url?: string;
+    icon?: string;
 }

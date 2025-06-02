@@ -9,7 +9,7 @@ export class Api {
         category: '/api/admin/category',
         contents: {
             main: '/api/admin/contents',
-            get: (category?: string) => `/api/admin/contents/${category}`,
+            get: (category?: string, limit?: number) => `/api/admin/contents/${category}?limit=${limit}`,
             single: (id?: string) => `/api/admin/contents/single?id=${id}`,
         },
     }

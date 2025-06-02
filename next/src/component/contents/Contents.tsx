@@ -18,12 +18,13 @@ const Contents = ({
     useEffect(() => {
         const getContents = async () => {
             console.log(category);
-            const result = await get<Content[]>(Api.admin.contents.get(category));
+            const result = await get<Content[]>(Api.admin.contents.get(category, 5));
             setContents(result ?? []);
         }
         getContents();
     }, [category]);
 
+    if (!contents) return null;
 
     return (
         <section id={category} className="flex flex-col gap-6">
