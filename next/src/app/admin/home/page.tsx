@@ -17,7 +17,7 @@ const AdminPage = () => {
             <MenuTile href={Url.admin.change_password} title="Change Password" subtitle="Update Password" />
             <MenuTile href={Url.admin.category} title="Categories" subtitle="Manage Categories" />
             <MenuTile href={Url.admin.contents.view} title="Contents" subtitle="Manage Contents" />
-            <MenuTile title="Version" subtitle="0.1.0+1" />
+            <MenuTile title="Version" subtitle="0.2.0" />
             <MenuTile onClick={() => adminContext?.logout()} title="Logout" subtitle="Logout as admin" />
         </section>
     )
