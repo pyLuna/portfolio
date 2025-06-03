@@ -8,7 +8,7 @@ export const useContent = (category?: string) => {
     const adminContext = useAdminContextHook();
     const queryClient = useQueryClient();
     const { data: contents, isLoading, isError } = useQuery({
-        queryKey: ["contents"],
+        queryKey: ["contents", category],
         queryFn: async () => {
             let uri = Api.admin.contents.main;
             console.log("category", category);
@@ -25,7 +25,7 @@ export const useContent = (category?: string) => {
     });
 
     const refresh = async () => {
-        await queryClient.invalidateQueries({ queryKey: ["contents"] });
+        await queryClient.invalidateQueries({ queryKey: ["contents", category] });
     }
 
     return {

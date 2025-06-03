@@ -7,10 +7,14 @@ const Contents = ({
     category,
     label,
     children,
+    limit,
+    className
 }: {
     category: string;
     label: string,
     children: (content: Content) => React.ReactNode;
+    limit?: number;
+    className?: string
 }) => {
 
     const [contents, setContents] = useState<Content[] | null>([]);
@@ -18,7 +22,7 @@ const Contents = ({
     useEffect(() => {
         const getContents = async () => {
             console.log(category);
-            const result = await get<Content[]>(Api.admin.contents.get(category, 5));
+            const result = await get<Content[]>(Api.admin.contents.get(category, limit));
             setContents(result ?? []);
         }
         getContents();
@@ -29,7 +33,7 @@ const Contents = ({
     return (
         <section id={category} className="flex flex-col gap-6">
             <h1>{label}</h1>
-            <div className="flex flex-col gap-4">
+            <div className={`flex flex-wrap gap-4 ${className}`}>
                 {contents?.map((content) => (
                     children && children(content)
                 ))}

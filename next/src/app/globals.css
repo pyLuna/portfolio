@@ -111,9 +111,11 @@ body{
   .divider {
     @apply border-foreground/20
   }
+  .hover-content{
+    @apply ease-in-out duration-300 hover:shadow-md hover:shadow-foreground/20 border border-foreground/30 rounded-md p-4
+  }
 }
 
 @components {
-
 }
 

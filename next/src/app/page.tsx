@@ -3,6 +3,7 @@ import InfoTile from "@/component/basic/InfoTile";
 import Education from "@/component/contents/Education";
 import Experience from "@/component/contents/Experience";
 import Projects from "@/component/contents/Projects";
+import Skills from "@/component/contents/Skills";
 import Loading from "@/component/ui/Loading";
 import { useBasicInfo } from "@/hooks/useBasicInfoHook";
 import { useThemeHook } from "@/hooks/useThemeHook";
@@ -56,6 +57,7 @@ const Home = () => {
       <Projects />
       <Experience />
       <Education />
+      <Skills />
 
     </div>
   );

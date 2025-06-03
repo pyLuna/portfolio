@@ -4,7 +4,7 @@ import ContentContainer from "./ContentWrapper";
 
 const Projects = () => {
     return (
-        <Contents category="projects" label="Projects">
+        <Contents category="projects" label="Projects" limit={5}>
             {(content) => (
                 <ContentContainer className="gap-1" key={content._id.toString()}>
                     <div className="flex gap-2">
@@ -14,7 +14,7 @@ const Projects = () => {
                         </Badge>
 
                         {content.url && (
-                            <a href={content.url} target="_blank" rel="noopener noreferrer" className="ml-auto underline text-primary-500 text-sm">
+                            <a href={content.url} target="_blank" rel="noopener noreferrer" className="ml-auto underline text-primary-300 text-sm font-bold">
                                 View
                             </a>
                         )}

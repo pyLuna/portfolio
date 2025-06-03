@@ -1,16 +1,11 @@
 import { useContent } from "@/hooks/useContentHook"
 import Url from "@/lib/utils/url"
 import Link from "next/link"
-import { useEffect } from "react"
 import Icon from "../ui/Icon"
 import Loading from "../ui/Loading"
 
 const AdminContents = ({ selectedCategory }: { selectedCategory?: string }) => {
-    const { refresh, contents, isLoading, isError } = useContent(selectedCategory);
-
-    useEffect(() => {
-        refresh();
-    }, [selectedCategory]);
+    const { contents, isLoading, isError } = useContent(selectedCategory);
 
     { isLoading && <Loading /> }
     { isError && <p>Error fetching contents</p> }
