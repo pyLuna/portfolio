@@ -5,7 +5,7 @@ import ContentContainer from "./ContentWrapper";
 
 const Education = () => {
     return (
-        <Contents category="educ" label="Education" >
+        <Contents category="educ" label="Education" reverse>
             {(content) => (
                 <ContentContainer key={content._id.toString()}>
                     <div className="flex gap-2 items-center">

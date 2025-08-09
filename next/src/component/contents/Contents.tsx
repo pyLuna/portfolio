@@ -8,13 +8,15 @@ const Contents = ({
     label,
     children,
     limit,
-    className
+    className,
+    reverse = false
 }: {
     category: string;
     label: string,
     children: (content: Content) => React.ReactNode;
     limit?: number;
-    className?: string
+    className?: string;
+    reverse?: boolean;
 }) => {
 
     const [contents, setContents] = useState<Content[] | null>([]);
@@ -22,7 +24,11 @@ const Contents = ({
     useEffect(() => {
         const getContents = async () => {
             console.log(category);
-            const result = await get<Content[]>(Api.admin.contents.get(category, limit));
+            let result = await get<Content[]>(Api.admin.contents.get(category, limit));
+
+            if(reverse) result = result?.reverse();
+            console.log(result);
+
             setContents(result ?? []);
         }
         getContents();

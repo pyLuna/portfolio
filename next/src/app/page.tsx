@@ -54,10 +54,10 @@ const Home = () => {
 
       <hr className="divider" />
 
+      <Skills />
       <Projects />
       <Experience />
       <Education />
-      <Skills />
 
     </div>
   );
