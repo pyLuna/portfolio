@@ -6,24 +6,21 @@ const uri = `mongodb+srv://${process.env.NEXT_DB_USER}:${process.env.NEXT_DB_PAS
 let cachedClient: MongoClient | null = null;
 
 const getMongoClient = async (): Promise<MongoClient> => {
-    if (cachedClient) {
-        return cachedClient;
-    }
-    console.log("Initiating new mongo client");
-    const client = new MongoClient(uri, {
-        serverApi: {
-            version: ServerApiVersion.v1,
-            strict: true,
-            deprecationErrors: true,
-        },
-    });
-
-    await client.connect();
-    cachedClient = client;
-
-    console.log("MongoDB connected");
-
+  if (cachedClient) {
     return cachedClient;
+  }
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
+
+  await client.connect();
+  cachedClient = client;
+
+  return cachedClient;
 };
 
 export default getMongoClient;

@@ -34,7 +34,6 @@ const AdminLoginPage = () => {
             auth: false,
         });
         setLoading(false);
-        console.log(result);
 
         if (!result) return null;
 
